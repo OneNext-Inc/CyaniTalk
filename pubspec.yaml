@@ -224,8 +224,6 @@ flutter:
     - family: Linar Sans
       fonts:
         - asset: assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf
-        - asset: assets/fonts/Noto_Sans_SC/NotoSansSC-VariableFont_wght.ttf
-        - asset: assets/fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf
     - family: JetBrainsMono
       fonts:
         - asset: assets/fonts/monospace/JetBrainsMono.ttf

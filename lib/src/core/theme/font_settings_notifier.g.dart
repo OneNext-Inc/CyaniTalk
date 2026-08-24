@@ -103,4 +103,4 @@ final class CurrentFontFamilyProvider
   }
 }
 
-String _$currentFontFamilyHash() => r'61853ff381fe27609a7a9712439b172db985e0be';
+String _$currentFontFamilyHash() => r'c322f6870e8dde01c5783a9b6a62cd3eae5da5b5';

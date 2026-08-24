@@ -102,7 +102,15 @@ class AppearanceSettingsNotifier extends _$AppearanceSettingsNotifier {
           ? Color(primaryColorValue)
           : SaucePalette.mikuGreen;
 
-      final fontFamily = prefs.getString('appearance_font_family') ?? 'Linar Sans';
+      final storedFontFamily = prefs.getString('appearance_font_family');
+      final fontFamily = storedFontFamily == null ||
+              storedFontFamily == 'MiSans' ||
+              storedFontFamily == 'misans'
+          ? 'Linar Sans'
+          : storedFontFamily;
+      if (storedFontFamily == 'MiSans' || storedFontFamily == 'misans') {
+        await prefs.setString('appearance_font_family', 'Linar Sans');
+      }
 
       final isDesktop = defaultTargetPlatform == TargetPlatform.windows ||
           defaultTargetPlatform == TargetPlatform.macOS ||

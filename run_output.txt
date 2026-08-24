@@ -1,0 +1,195 @@
+Launching lib\main.dart on Windows in debug mode...
+Building Windows application...                                 
+**************** SOLOUD CONFIGURE.CMAKE
+[+] Build dynamic library enabled
+[-] Build static library disabled
+[-] Build C API disabled
+[+] Build MiniAudio enabled
+[-] Build demos disabled
+[+] NULL backend enabled
+[-] SDL2 backend disabled
+[-] ALSA backend disabled
+[-] CoreAudio backend disabled
+[-] OpenSLES backend disabled
+[-] XAudio2 backend disabled
+[-] WINMM backend disabled
+[-] WASAPI backend disabled
+[-] Generate Glue disabled
+**************** SOLOUD SRC.CMAKE START
+**************** SOLOUD SRC.CMAKE END  soloud
+NO_XIPH_LIBS has not been set. Linking Opus and Ogg libraries!
+Building Windows application...                                    37.4s
+鈭?Built build\windows\x64\runner\Debug\Nyachi.exe
+[IMPORTANT:flutter/shell/platform/embedder/embedder_surface_gl_impeller.cc(126)] Using the Impeller rendering backend (OpenGLESSDF).
+Syncing files to device Windows...                              
+[D]  AppLogger: Initialized with log level: Level.debug
+[D]  AppLogger: Log file path: C:\Users\YunaAyase\AppData\Roaming\com.example\Nyachi/debug/Nyachi_Console_log_2026-08-24_11-02_56.log
+[D]  AppLogger: Build mode: Debug
+[D]  AppLogger: User log level: null
+[38;5;12m[I][0m  Nyachi app started
+[38;5;12m[I][0m  PerformanceMonitor: Initialized
+[38;5;12m[I][0m  PerformanceMonitor: App startup time recorded: 1787540576717ms
+[90m[馃寧 Easy Localization] [DEBUG] Localization initialized[0m
+[90m[馃寧 Easy Localization] [DEBUG] Start[0m
+[38;5;12m[I][0m  Starting deferred initialization of non-core services
+[90m[馃寧 Easy Localization] [DEBUG] Init state[0m
+[90m[馃寧 Easy Localization] [DEBUG] Build[0m
+[90m[馃寧 Easy Localization] [DEBUG] Init Localization Delegate[0m
+[90m[馃寧 Easy Localization] [DEBUG] Init provider[0m
+[38;5;12m[I][0m  DeepLinkHandler: 鍒濆鍖栦腑...
+[38;5;12m[I][0m  PerformanceMonitor: Initialized
+[38;5;12m[I][0m  PerformanceMonitor: App startup time recorded: 1787540577326ms
+[38;5;12m[I][0m  NyachiApp: 鍒濆鍖栧簲鐢ㄧ▼搴?[38;5;12m[I][0m  Router: Initializing GoRouter
+[D]  NyachiApp: 鍔犺浇璺敱閰嶇疆
+[D]  NyachiApp: 鍒濆鍖朚isskey娴佸獟浣撴湇鍔?[38;5;12m[I][0m  鍒濆鍖栬璇佹湇鍔?[38;5;12m[I][0m  AuthRepository: Getting all accounts
+[38;5;12m[I][0m  AuthRepository: Successfully retrieved 3 accounts
+[38;5;12m[I][0m  璁よ瘉鏈嶅姟鍒濆鍖栧畬鎴愶紝鍔犺浇浜?3 涓处鎴?[38;5;12m[I][0m  AuthRepository: Getting selected Misskey account ID
+[38;5;12m[I][0m  AuthRepository: Selected Misskey account ID: ahalh3bjy5zv0015@hub.imikufans.com
+[D]  褰撳墠璐︽埛ID璁剧疆涓? ahalh3bjy5zv0015@hub.imikufans.com
+[D]  NoteCacheManager: Current account ID set to ahalh3bjy5zv0015@hub.imikufans.com
+[38;5;12m[I][0m  MisskeyStreaming: Status updated to StreamingStatus.connecting
+[38;5;12m[I][0m  MisskeyStreaming: Connecting to wss://hub.imikufans.com/streaming?i=mVROh13syX2DTXX9psDdG0kboOOuW52n
+[38;5;12m[I][0m  NyachiApp: 鍒濆鍖栧簲鐢ㄧ▼搴?[D]  NyachiApp: 鍔犺浇璺敱閰嶇疆
+[D]  NyachiApp: 鍒濆鍖朚isskey娴佸獟浣撴湇鍔?[D]  NyachiApp: 鍔犺浇澶栬璁剧疆 - 鏄剧ず妯″紡: ThemeMode.system, 鍔ㄦ€佽壊褰? true
+[D]  NyachiApp: 鏋勫缓MaterialApp
+Syncing files to device Windows...                                 494ms
+
+Flutter run key commands.
+r Hot reload. 
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on Windows is available at: http://127.0.0.1:49811/IcjiSt_VIM4=/
+The Flutter DevTools debugger and profiler on Windows is available at: http://127.0.0.1:49811/IcjiSt_VIM4=/devtools/?uri=ws://127.0.0.1:49811/IcjiSt_VIM4=/ws
+[90m[馃寧 Easy Localization] [DEBUG] Load Localization Delegate[0m
+[90m[馃寧 Easy Localization] [DEBUG] Load asset from assets/translations[0m
+[D]  PerformanceMonitor: FPS: 1.0
+[38;5;12m[I][0m  UpdateNotifier: Current version: 1.3.4
+[38;5;12m[I][0m  TimelineCacheDatabase: Opening database at C:\Users\YunaAyase\AppData\Roaming\com.example\Nyachi\Databases\timeline_cache.db
+[38;5;12m[I][0m  AudioEngine: Initialized (flutter_soloud)
+[38;5;12m[I][0m  Audio engine initialized
+[38;5;12m[I][0m  NotificationManager: Started real-time listeners
+[38;5;12m[I][0m  Notification manager started
+[38;5;12m[I][0m  Background service initialized
+*** sqflite warning ***
+
+You are changing sqflite default factory.
+Be aware of the potential side effects. Any library using sqflite
+will have this factory as the default for all operations.
+
+*** sqflite warning ***
+
+[38;5;12m[I][0m  MisskeyImageCacheDatabase: Opening database at C:\Users\YunaAyase\AppData\Roaming\com.example\Nyachi\Databases\misskey_image_cache.db
+[38;5;12m[I][0m  DeepLinkHandler: 鍒濆鍖栧畬鎴?[90m[馃寧 Easy Localization] [DEBUG] Build[0m
+[90m[馃寧 Easy Localization] [DEBUG] Init Localization Delegate[0m
+[90m[馃寧 Easy Localization] [DEBUG] Init provider[0m
+[D]  NyachiApp: 鏋勫缓MaterialApp
+[D]  Router: StatefulShellRoute builder called for path: null
+[D]  PerformanceMonitor: FPS: 1.0
+[D]  PerformanceMonitor: FPS: 1.0
+[38;5;12m[I][0m  Misskey image cache database initialized
+[38;5;12m[I][0m  All deferred services initialized successfully
+[38;5;12m[I][0m  MisskeyRepository: Initializing repository
+[38;5;12m[I][0m  鍒濆鍖朚isskey鏃堕棿绾匡紝绫诲瀷: Global
+[38;5;12m[I][0m  MisskeyRepository: Initializing for account: ahalh3bjy5zv0015@hub.imikufans.com on hub.imikufans.com
+[38;5;12m[I][0m  MisskeyApi: Initializing for host: hub.imikufans.com (timeout=30s)
+[38;5;12m[I][0m  NetworkClient: Creating Dio instance for hub.imikufans.com (timeout=30s)
+[D]  MisskeyRepository: Getting online users count
+[D]  MisskeyApi: Getting online users count
+[38;5;12m[I][0m  NyachiApp: SQLite 璁板綍杩囨湡锛岃Е鍙?Home 鏃堕棿绾垮埛鏂?[38;5;12m[I][0m  鍒濆鍖朚isskey鏃堕棿绾匡紝绫诲瀷: Home
+[38;5;12m[I][0m  鍒锋柊Misskey鏃堕棿绾匡紝绫诲瀷: Home
+DynamicColorService: accent color updated 鈥?#0078D4
+[38;5;12m[I][0m  MisskeyStreaming: Subscribed to globalTimeline channel
+dynamic_color: Accent color detected.
+[38;5;12m[I][0m  Misskey鏃堕棿绾? SQLite 璁板綍杩囨湡鎴栨棤璁板綍锛岀洿鎺ヤ粠鏈嶅姟鍣ㄨ幏鍙?[38;5;12m[I][0m  MisskeyRepository: Getting Global timeline, limit=20, sinceId=null, untilId=null
+[D]  ApiRequestManager: Executing request for :POST:MisskeyApi.getTimeline:{limit: 20}
+[38;5;12m[I][0m  MisskeyApi.getTimeline: 寮€濮?[D]  NetworkClient: *** Request ***
+[D]  NetworkClient: uri: https://hub.imikufans.com/api/get-online-users-count
+[D]  NetworkClient: method: POST
+[D]  NetworkClient: responseType: ResponseType.json
+[D]  NetworkClient: followRedirects: true
+[D]  NetworkClient: persistentConnection: true
+[D]  NetworkClient: connectTimeout: 0:00:30.000000
+[D]  NetworkClient: sendTimeout: 0:00:30.000000
+[D]  NetworkClient: receiveTimeout: 0:00:30.000000
+[D]  NetworkClient: transformTimeout: null
+[D]  NetworkClient: receiveDataWhenStatusError: true
+[D]  NetworkClient: extra: {performanceStart: 2026-08-24 11:03:00.618483}
+[D]  NetworkClient: 
+[D]  NetworkClient: *** Request ***
+[D]  NetworkClient: uri: https://hub.imikufans.com/api/notes/global-timeline
+[D]  NetworkClient: method: POST
+[D]  NetworkClient: responseType: ResponseType.json
+[D]  NetworkClient: followRedirects: true
+[D]  NetworkClient: persistentConnection: true
+[D]  NetworkClient: connectTimeout: 0:00:30.000000
+[D]  NetworkClient: sendTimeout: 0:00:30.000000
+[D]  NetworkClient: receiveTimeout: 0:00:30.000000
+[D]  NetworkClient: transformTimeout: null
+[D]  NetworkClient: receiveDataWhenStatusError: true
+[D]  NetworkClient: extra: {performanceStart: 2026-08-24 11:03:00.637533}
+[D]  NetworkClient: 
+[D]  NyachiApp: 鏋勫缓MaterialApp
+[38;5;12m[I][0m  MisskeyStreaming: Status updated to StreamingStatus.connected
+[38;5;12m[I][0m  MisskeyStreaming: Subscribed to main channel
+[D]  PerformanceMonitor: Network request [POST] https://hub.imikufans.com/api/get-online-users-count took 1486ms (status: 200)
+[38;5;208m[W][0m  PerformanceMonitor: Slow network request detected: https://hub.imikufans.com/api/get-online-users-count took 1486ms
+[D]  NetworkClient: *** Response ***
+[D]  NetworkClient: uri: https://hub.imikufans.com/api/get-online-users-count
+[D]  NetworkClient: 
+[38;5;12m[I][0m  UpdateNotifier: App is up to date
+[D]  PerformanceMonitor: Network request [POST] https://hub.imikufans.com/api/notes/global-timeline took 2089ms (status: 200)
+[38;5;208m[W][0m  PerformanceMonitor: Slow network request detected: https://hub.imikufans.com/api/notes/global-timeline took 2089ms
+[D]  NetworkClient: *** Response ***
+[D]  NetworkClient: uri: https://hub.imikufans.com/api/notes/global-timeline
+[D]  NetworkClient: 
+[D]  MisskeyApi.getTimeline: 鎴愬姛 (200)
+[38;5;12m[I][0m  MisskeyRepository: Successfully retrieved 20 notes for Global timeline (filtered from 20)
+[38;5;12m[I][0m  TimelineCacheDatabase: Saved 20 notes for Global
+[38;5;12m[I][0m  Misskey鏃堕棿绾垮垵濮嬪寲瀹屾垚锛屼粠鏈嶅姟鍣ㄥ姞杞戒簡 20 鏉＄瑪璁?[D]  MfmRenderer: Setting API emoji loader: true
+[D]  MfmRenderer: Converting text to RichText: 鑷姩鍖?602璁稿鍗?[D]  MfmRenderer: Converting text to RichText: https://www.cnvd.org.cn/
+杩欑綉绔欏緱瀛樺晩锛堬級
+[D]  MfmRenderer: Setting API emoji loader: true
+[D]  MfmRenderer: Converting text to RichText: 鑷姩鍖?602璁稿鍗?[D]  MfmRenderer: Converting text to RichText: 杩欏墽鏄湡鐖姐€愩€愭伓濂充笉鎵嶏紝璇峰鍏崇収 锝為洀瀹澏榧犳崲韬紶锝炪€戝叏12璇?瓒呮竻涓瓧锛堟湭鍒犲噺鐗堬級銆?https://www.bilibili.com/video/BV1kp8z6REGL/?p=7&share_source=copy_web&vd_source=5b90955e3599b6c043a533319fdddff3
+[D]  MfmRenderer: Setting API emoji loader: true
+[D]  MfmRenderer: Converting text to RichText: 鑷姩鍖?602璁稿鍗?[D]  MfmRenderer: Converting text to RichText: 浣犳墠鐭ラ亾娌℃湁璧勬湰灏辨悶涓嶈捣鐢靛櫒鍟婏紵锛?[D]  MfmRenderer: Setting API emoji loader: true
+[D]  MfmRenderer: Converting text to RichText: 鑷姩鍖?602璁稿鍗?[D]  MfmRenderer: Converting text to RichText: 灏肩帥鐨勯泦鎴愮數璺笉鏄繖涔堢敤鐨勫晩锛?[38;5;12m[I][0m  MisskeyRepository: Getting current user information
+[D]  ApiRequestManager: Executing request for :POST:MisskeyApi.i:
+[38;5;12m[I][0m  MisskeyApi.i: 寮€濮?[D]  璐︽埛ID: ahalh3bjy5zv0015@hub.imikufans.com
+[D]  瀹夊叏璐︽埛ID: ahalh3bjy5zv0015@hub.imikufans.com
+[D]  绫诲埆璺緞: D:\YunaAyase\Downloads/Nyachi Cached Files\ahalh3bjy5zv0015@hub.imikufans.com\image
+[D]  绫诲埆鐩綍瀵硅薄: D:\YunaAyase\Downloads/Nyachi Cached Files\ahalh3bjy5zv0015@hub.imikufans.com\image
+[D]  璐︽埛ID: ahalh3bjy5zv0015@hub.imikufans.com
+[D]  瀹夊叏璐︽埛ID: ahalh3bjy5zv0015@hub.imikufans.com
+[D]  绫诲埆璺緞: D:\YunaAyase\Downloads/Nyachi Cached Files\ahalh3bjy5zv0015@hub.imikufans.com\image
+[D]  绫诲埆鐩綍瀵硅薄: D:\YunaAyase\Downloads/Nyachi Cached Files\ahalh3bjy5zv0015@hub.imikufans.com\image
+[D]  绫诲埆鐩綍宸插瓨鍦?[D]  绫诲埆鐩綍宸插瓨鍦?[D]  PerformanceMonitor: Media loading [cache_hit] took 233ms
+[D]  PerformanceMonitor: Media loading [cache_hit] took 164ms
+[D]  NetworkClient: *** Request ***
+[D]  NetworkClient: uri: https://hub.imikufans.com/api/i
+[D]  NetworkClient: method: POST
+[D]  NetworkClient: responseType: ResponseType.json
+[D]  NetworkClient: followRedirects: true
+[D]  NetworkClient: persistentConnection: true
+[D]  NetworkClient: connectTimeout: 0:00:30.000000
+[D]  NetworkClient: sendTimeout: 0:00:30.000000
+[D]  NetworkClient: receiveTimeout: 0:00:30.000000
+[D]  NetworkClient: transformTimeout: null
+[D]  NetworkClient: receiveDataWhenStatusError: true
+[D]  NetworkClient: extra: {performanceStart: 2026-08-24 11:03:03.553682}
+[D]  NetworkClient: 
+[D]  PerformanceMonitor: Network request [POST] https://hub.imikufans.com/api/i took 623ms (status: 200)
+[D]  NetworkClient: *** Response ***
+[D]  NetworkClient: uri: https://hub.imikufans.com/api/i
+[D]  NetworkClient: 
+[D]  MisskeyApi.i: 鎴愬姛 (200)
+[D]  MisskeyRepository: Raw /api/i response: {id: ahalh3bjy5zv0015, name: Ayase Yuna, username: YunaAyase, host: null, avatarUrl: https://hub.imikufans.com/proxy/avatar.webp?url=https%3A%2F%2Fkodo.imikufans.com%2F%2F4fcc42ca-cf94-4f24-8e2c-d60b51fb5829.png&avatar=1, avatarBlurhash: eLJkcfIA_N4nRj-nW9bFocV@IU_2RO-pM{WA-;IUs--;%1xaa#ozj], avatarDecorations: [{id: ajidy5chax610lmz, url: https://kodo.imikufans.com//iMikufansHub/26c3769e-1e2a-4d1d-8143-e1ec0fec70bc.webp}], isBot: false, isCat: false, emojis: {}, onlineStatus: online, badgeRoles: [{name: Administrator, iconUrl: null, displayOrder: 0}], url: null, uri: null, movedTo: null, alsoKnownAs: null, createdAt: 2026-01-09T15:27:51.823Z, updatedAt: 2026-08-22T16:21:01.539Z, lastFetchedAt: null, bannerUrl: https://kodo.imikufans.com//76977416-c93b-4b3f-b968-4b323d11e7e1.png, bannerBlurhash: e142uNyFQ*nNNGo#XUayoJWBNrXns=jEn#x_S#j]f6WAF?XTxdngoI, isLocked: false, isSilenced: false, isSuspended: false, description: 鐑埍Vibe Coding锛孋yaniAgent 寮€鍒涜€呫€?鐖卞ソ浣滅紪鏇层€佹悶缂栫▼绔嬮」銆佹繁鍏ユ帰绱㈣绠楁満棰嗗煙鐨勬繁娓娿€?鎵搊su! maimai 銈兂銈层偔 Phigros Rizline
+#Misskey #CyaniAgent, location: /Data/Users/AyaseYuna (from Cyanite), birthday: null, lang: null, fields: [{name: Bilibili, value: https://space.bilibili.com/455406703}, {name: X / Twitter, value: @Yuna_Chuyun}, {name: GitHub, value: https://github.com/YunaAyase}, {name: CyaniAgent, value: https://github.com/CyaniAgent}], verifiedLinks: [], followersCount: 203, followingCount: 71, notesCount: 424, pinnedNoteIds: [aknjvi9eax6165gb], pinnedNotes: [{id: aknjvi9eax6165gb, createdAt: 2026-04-04T07:03:12.434Z, userId: ahalh3bjy5zv0015, user: {id: ahalh3bjy5zv0015, name: Ayase Yuna, username: YunaAyase, host: null, avatarUrl: https://hub.imikufans.com/proxy/avatar.webp?url=https%3A%2F%2Fkodo.imikufans.com%2F%2F4fcc42ca-cf94-4f24-8e2c-d60b51fb5829.png&avatar=1, avatarBlurhash: eLJkcfIA_N4nRj-nW9bFocV@IU_2RO-pM{WA-;IUs--;%1xaa#ozj], avatarDecorations: [{id: ajidy5chax610lmz, url: https://kodo.imikufans.com//iMikufansHub/26c3769e-1e2a-4d1d-8143-e1ec0fec70bc.webp}], isBot: false, isCat: false, emojis: {}, onlineStatus: online, badgeRoles: [{name: Administrator, iconUrl: null, displayOrder: 0}]}, text: 鎻愰棶锛?[fg 澶у鏈€鍠滄浣跨敤鐨勭櫧钁辩ぞ鍖虹綉绔欏姛鑳芥槸浠€涔?鏈夊摢浜涳紵]
+鍙互鎶曠エ锛屼篃鍙互鍚戞垜鍥炲锛? cw: null, visibility: public, localOnly: false, reactionAcceptance: nonSensitiveOnly, renoteCount: 1, repliesCount: 2, reactionCount: 11, reactions: {鉂? 10, :michiru_happy@.:: 1}, reactionEmojis: {}, fileIds: [], files: [], replyId: null, renoteId: null, hasPoll: true, clippedCount: 0, poll: {multiple: true, expiresAt: null, choices: [{text: 瀹炴椂甯栧瓙銆佹秷鎭? votes: 27, isVoted: true}, {text: 婕備寒鐨勭敤鎴风晫闈? votes: 14, isVoted: false}, {text: Misskey Games, votes: 5, isVoted: false}, {text: 澶氭湇鍔″櫒涓€璧疯仈鍚? votes: 8, isVoted: false}, {text: 楂樺害鐨勪釜鎬у寲锛堟瘮濡傚ご鍍忔銆佷富棰樼瓑绛夛級, votes: 6, isVoted: false}, {text: 鏈夎叮鐨勫叾浠栧姛鑳斤紝濡傚叧浜庛€佹垚灏? votes: 4, isVoted: false}, {text: 鎻愮ず闊?鍔ㄦ晥/鍥炬爣绛夊厓绱? votes: 7, isVoted: false}]}}], pinnedPageId: null, pinnedPage: null, publicReactions: true, followersVisibility: public, followingVisibility: public, chatScope: mutual, canChat: true, roles: [{id: ahajie9d3ar0000f, name: Administrator, color: #00ffb3, iconUrl: null, description: 鏈湇鍔″櫒鐨勭鐞嗗憳瑙掕壊銆? isModerator: false, isAdministrator: true, displayOrder: 0}], memo: null, moderationNote: , twoFactorEnabled: true, usePasswordLessLogin: false, securityKeys: false, avatarId: ahbe7npny5zv0099, bannerId: ahbeg37qy5zv009m, followedMessage: 娆㈣繋鍏虫敞 CyaniAgent 寮€鍒涜€咃紒, isModerator: true, isAdmin: true, injectFeaturedNote: true, receiveAnnouncementEmail: true, alwaysMarkNsfw: false, autoSensitive: false, carefulBot: false, autoAcceptFollowed: true, noCrawle: false, preventAiLearning: true, isExplorable: true, isDeleted: false, twoFactorBackupCodesStock: full, hideOnlineStatus: false, hasUnreadSpecifiedNotes: false, hasUnreadMentions: false, hasUnreadChatMessages: false, hasUnreadAnnouncement: false, unreadAnnouncements: [], hasUnreadAntenna: false, hasUnreadChannel: false, hasUnreadNotification: false, hasPendingReceivedFollowRequest: false, unreadNotificationsCount: 0, mutedWords: [], hardMutedWords: [], mutedInstances: [], mutingNotificationTypes: [], notificationRecieveConfig: {}, emailNotificationTypes: [follow, receiveFollowRequest], achievements: [{name: client30min, unlockedAt: 1767977695359}, {name: client60min, unlockedAt: 1767977695377}, {name: following1, unlockedAt: 1767977752790}, {name: notes1, unlockedAt: 1767979282213}, {name: postedAtLateNight, unlockedAt: 1767979282695}, {name: cookieClicked, unlockedAt: 1768003330549}, {name: smashTestNotificationButton, unlockedAt: 1768005380800}, {name: tutorialCompleted, unlockedAt: 1768005589687}, {name: justPlainLucky, unlockedAt: 1768006074284}, {name: followers1, unlockedAt: 1768006642357}, {name: profileFilled, unlockedAt: 1768008506736}, {name: markedAsCat, unlockedAt: 1768008530552}, {name: noteDeletedWithin1min, unlockedAt: 1768028353968}, {name: notes10, unlockedAt: 1768054807941}, {name: following10, unlockedAt: 1768054885186}, {name: noteFavorited1, unlockedAt: 1768055925707}, {name: followers10, unlockedAt: 1768089584397}, {name: login3, unlockedAt: 1768090988294}, {name: noteClipped1, unlockedAt: 1768099378022}, {name: foundTreasure, unlockedAt: 1768099596521}, {name: myNoteFavorited1, unlockedAt: 1768196049411}, {name: login7, unlockedAt: 1768476885750}, {name: followers50, unlockedAt: 1768514851411}, {name: notes100, unlockedAt: 1769085911124}, {name: login15, unlockedAt: 1769172419619}, {name: followers100, unlockedAt: 1769324144512}, {name: following50, unlockedAt: 1769938166532}, {name: iLoveMisskey, unlockedAt: 1770130993308}, {name: login30, unlockedAt: 1770469591450}, {name: login60, unlockedAt: 1773055883483}, {name: collectAchievements30, unlockedAt: 1773055883968}, {name: login100, unlockedAt: 1776470416922}, {name: login200, unlockedAt: 1785212766035}], loggedInDays: 222, policies: {gtlAvailable: true, ltlAvailable: true, canPublicNote: true, mentionLimit: 999, canInvite: true, inviteLimit: 999, inviteLimitCycle: 10080, inviteExpirationTime: 259200, canManageCustomEmojis: true, canManageAvatarDecorations: true, canSearchNotes: true, canSearchUsers: true, canUseTranslator: true, canHideAds: true, canCreateChannel: true, driveCapacityMb: 16384, maxFileSizeMb: 250, alwaysMarkNsfw: false, canUpdateBioMedia: true, pinLimit: 999, antennaLimit: 999, wordMuteLimit: 200, webhookLimit: 999, clipLimit: 999, noteEachClipsLimit: 10000, userListLimit: 999, userEachUserListsLimit: 999, rateLimitFactor: 1, avatarDecorationLimit: 16, canImportAntennas: true, canImportBlocking: true, canImportFollowing: true, canImportMuting: false, canImportUserLists: true, chatAvailability: available, uploadableFileTypes: [text/*, application/*, image/*, video/*, audio/*], noteDraftLimit: 999, scheduledNoteLimit: 100, watermarkAvailable: true}}
+[38;5;12m[I][0m  MisskeyRepository: Successfully retrieved user info for YunaAyase
+[D]  NyachiApp: 搴旂敤鐢熷懡鍛ㄦ湡鐘舵€佸彉鍖? AppLifecycleState.inactive
+[38;5;12m[I][0m  NyachiApp: 搴旂敤杩涘叆鍚庡彴锛岄檷浣庡績璺抽鐜?..
+[38;5;12m[I][0m  MisskeyStreaming: 鍒囨崲蹇冭烦棰戠巼涓?90s(鍚庡彴)

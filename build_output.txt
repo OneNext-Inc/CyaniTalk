@@ -1,0 +1,19 @@
+Building Windows application...                                 
+**************** SOLOUD CONFIGURE.CMAKE
+[+] Build dynamic library enabled
+[-] Build static library disabled
+[-] Build C API disabled
+[+] Build MiniAudio enabled
+[-] Build demos disabled
+[+] NULL backend enabled
+[-] SDL2 backend disabled
+[-] ALSA backend disabled
+[-] CoreAudio backend disabled
+[-] OpenSLES backend disabled
+[-] XAudio2 backend disabled
+[-] WINMM backend disabled
+[-] WASAPI backend disabled
+[-] Generate Glue disabled
+**************** SOLOUD SRC.CMAKE START
+**************** SOLOUD SRC.CMAKE END  soloud
+NO_XIPH_LIBS has not been set. Linking Opus and Ogg libraries!

@@ -325,7 +325,12 @@ class FontManager {
   static Future<String> getSelectedFontId() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      return prefs.getString(_prefSelectedFont) ?? 'linar_sans'; // 默认使用 Linar Sans
+      final selectedFontId = prefs.getString(_prefSelectedFont);
+      if (selectedFontId == 'misans' || selectedFontId == 'MiSans') {
+        await prefs.setString(_prefSelectedFont, 'linar_sans');
+        return 'linar_sans';
+      }
+      return selectedFontId ?? 'linar_sans'; // 默认使用 Linar Sans
     } catch (e) {
       logger.error('FontManager: Failed to get selected font ID', e);
       return 'linar_sans';

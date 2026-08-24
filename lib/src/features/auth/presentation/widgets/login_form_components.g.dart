@@ -9,20 +9,14 @@ part of 'login_form_components.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// 登录表单控制器 (当前未接入 login_form.dart)
-///
-/// 管理登录流程的步骤、表单数据和加载状态。
 
 @ProviderFor(LoginFormController)
 final loginFormControllerProvider = LoginFormControllerProvider._();
 
 /// 登录表单控制器 (当前未接入 login_form.dart)
-///
-/// 管理登录流程的步骤、表单数据和加载状态。
 final class LoginFormControllerProvider
     extends $NotifierProvider<LoginFormController, LoginFormData> {
   /// 登录表单控制器 (当前未接入 login_form.dart)
-  ///
-  /// 管理登录流程的步骤、表单数据和加载状态。
   LoginFormControllerProvider._()
     : super(
         from: null,
@@ -54,8 +48,6 @@ String _$loginFormControllerHash() =>
     r'c3138c7ad727dff2290eca2e313a30491cb1b647';
 
 /// 登录表单控制器 (当前未接入 login_form.dart)
-///
-/// 管理登录流程的步骤、表单数据和加载状态。
 
 abstract class _$LoginFormController extends $Notifier<LoginFormData> {
   LoginFormData build();
