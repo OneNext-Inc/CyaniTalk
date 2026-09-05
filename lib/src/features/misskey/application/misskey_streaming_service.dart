@@ -49,6 +49,9 @@ class MisskeyStreamingService extends _$MisskeyStreamingService
   DateTime? _connectionEstablishedAt;
   StreamingStatus _status = StreamingStatus.disconnected;
 
+  /// 切换账户期间为 true，抑制所有重连 toast 直到新连接建立
+  bool _suppressToast = false;
+
   static const _foregroundHeartbeat = Duration(seconds: 30);
   static const _backgroundHeartbeat = Duration(seconds: 90);
   Duration _heartbeatInterval = _foregroundHeartbeat;
@@ -76,6 +79,11 @@ class MisskeyStreamingService extends _$MisskeyStreamingService
     _status = newStatus;
     if (!_statusController.isClosed) {
       _statusController.add(newStatus);
+    }
+    // 连接建立时自动清除 toast 抑制
+    if (newStatus == StreamingStatus.connected && _suppressToast) {
+      _suppressToast = false;
+      logger.info('MisskeyStreaming: Connection established, clearing toast suppression');
     }
     logger.info('MisskeyStreaming: Status updated to $newStatus');
   }
@@ -252,18 +260,23 @@ class MisskeyStreamingService extends _$MisskeyStreamingService
           _handleDisconnect(account);
         },
         onError: (error) {
-          logger.error('MisskeyStreaming: Stream error: $error');
-          // 针对 Windows "semaphore timeout" 或 "handshake" 错误加强日志
           final errorStr = error.toString().toLowerCase();
-          if (errorStr.contains('121') || errorStr.contains('semaphore')) {
-            logger.error('MisskeyStreaming: Detected Windows Semaphore Timeout (Error 121)');
-          } else if (errorStr.contains('handshake') || errorStr.contains('terminated')) {
-            logger.error('MisskeyStreaming: Detected SSL Handshake Failure');
-          } else if (errorStr.contains('connection reset by peer') || errorStr.contains('socket closed')) {
-            logger.error('MisskeyStreaming: Detected connection reset or socket closed');
+          logger.error('MisskeyStreaming: Stream error: $error');
+
+          // ── 错误分类 ──────────────────────────────────────────
+          // 仅"致命"错误（WebSocket 连接本身不可恢复）才触发重连；
+          // HTTP 5xx 等瞬态错误只记录日志，不中断连接。
+          if (_isFatalStreamError(errorStr)) {
+            _logStreamError(errorStr);
+            _updateStatus(StreamingStatus.error);
+            _handleDisconnect(account);
+          } else {
+            // 非致命：仅记录，不触发重连
+            logger.info(
+              'MisskeyStreaming: Non-fatal stream error, '
+              'connection remains alive',
+            );
           }
-          _updateStatus(StreamingStatus.error);
-          _handleDisconnect(account);
         },
         cancelOnError: false, // 即使发生错误也不取消订阅，让onError处理
       );
@@ -276,6 +289,145 @@ class MisskeyStreamingService extends _$MisskeyStreamingService
       _handleDisconnect(account);
     } finally {
       _isConnecting = false;
+    }
+  }
+
+  // ── 流错误分类 ──────────────────────────────────────────────────────
+  //
+  // WebSocket 流的 onError 可能收到多种错误：
+  //   [致命] 真正的连接中断 → 需要重连
+  //     - SocketException（连接被重置、网络不可达、管道破裂…）
+  //     - WebSocketException / HttpException（协议层错误）
+  //     - SSL/TLS 握手失败、证书问题
+  //     - Windows Error 121 (Semaphore Timeout)
+  //     - EOFError（对端异常关闭）
+  //     - "Connection closed before full header was received"（升级被拒）
+  //
+  //   [非致命] 瞬态 / 资源层错误 → 仅记录，连接仍存活
+  //     - HTTP 5xx（502 Bad Gateway / 503 / 524 等，反向代理或 CDN 临时故障）
+  //     - HTTP 4xx（429 Too Many Requests / 403 Forbidden）
+  //     - 请求超时（单次 API 调用失败）
+  //     - DNS 解析抖动（非首次连接阶段）
+
+  /// 判断流错误是否为致命错误（需要触发重连）
+  bool _isFatalStreamError(String errorStr) {
+    // ── 真正的连接中断 ────────────────────────────────────────
+    if (errorStr.contains('socket')) {
+      return true;
+    }
+    if (errorStr.contains('connection reset by peer')) {
+      return true;
+    }
+    if (errorStr.contains('connection refused')) {
+      return true;
+    }
+    if (errorStr.contains('connection timed out') ||
+        errorStr.contains('connection timeout')) {
+      return true;
+    }
+    if (errorStr.contains('network is unreachable')) {
+      return true;
+    }
+    if (errorStr.contains('no route to host')) {
+      return true;
+    }
+    if (errorStr.contains('broken pipe')) {
+      return true;
+    }
+    if (errorStr.contains('connection aborted')) {
+      return true;
+    }
+    if (errorStr.contains('connection closed')) {
+      return true;
+    }
+    if (errorStr.contains('eof')) {
+      return true;
+    }
+
+    // ── WebSocket 协议层错误 ──────────────────────────────────
+    if (errorStr.contains('websocket')) {
+      return true;
+    }
+    if (errorStr.contains('handshake')) {
+      return true;
+    }
+    if (errorStr.contains('terminated')) {
+      return true;
+    }
+
+    // ── SSL / TLS 错误 ────────────────────────────────────────
+    if (errorStr.contains('ssl') || errorStr.contains('tls')) {
+      return true;
+    }
+    if (errorStr.contains('certificate')) {
+      return true;
+    }
+
+    // ── Windows 特有 ──────────────────────────────────────────
+    if (errorStr.contains('121') || errorStr.contains('semaphore')) {
+      return true;
+    }
+
+    // ── 非致命：HTTP 错误、超时、DNS 抖动 ────────────────────
+    // HTTP 5xx (502/503/504/524 等) — 反向代理或 CDN 临时故障
+    if (errorStr.contains('502') || errorStr.contains('bad gateway')) {
+      return false;
+    }
+    if (errorStr.contains('503') ||
+        errorStr.contains('service unavailable')) {
+      return false;
+    }
+    if (errorStr.contains('504') || errorStr.contains('gateway timeout')) {
+      return false;
+    }
+    if (errorStr.contains('524') ||
+        errorStr.contains('a timeout occurred')) {
+      return false;
+    }
+    if (errorStr.contains('5')) {
+      return false; // 通用 5xx
+    }
+
+    // HTTP 4xx (429 限流 / 403 禁止)
+    if (errorStr.contains('429') || errorStr.contains('too many requests')) {
+      return false;
+    }
+    if (errorStr.contains('403') || errorStr.contains('forbidden')) {
+      return false;
+    }
+    if (errorStr.contains('4')) {
+      return false; // 通用 4xx
+    }
+
+    // 请求超时、DNS 解析抖动
+    if (errorStr.contains('timeout')) {
+      return false;
+    }
+    if (errorStr.contains('temporarily')) {
+      return false;
+    }
+
+    // ── 未识别的错误：保守策略，视为致命 ──────────────────────
+    logger.warning(
+      'MisskeyStreaming: Unrecognized stream error, treating as fatal: $errorStr',
+    );
+    return true;
+  }
+
+  /// 为已知的致命错误类型记录详细的诊断日志
+  void _logStreamError(String errorStr) {
+    if (errorStr.contains('121') || errorStr.contains('semaphore')) {
+      logger.error('MisskeyStreaming: Windows Semaphore Timeout (Error 121)');
+    } else if (errorStr.contains('handshake') || errorStr.contains('terminated')) {
+      logger.error('MisskeyStreaming: SSL Handshake Failure');
+    } else if (errorStr.contains('connection reset by peer')) {
+      logger.error('MisskeyStreaming: Connection Reset by Peer');
+    } else if (errorStr.contains('socket closed')) {
+      logger.error('MisskeyStreaming: Socket Closed');
+    } else if (errorStr.contains('certificate')) {
+      logger.error('MisskeyStreaming: SSL Certificate Error');
+    } else if (errorStr.contains('eof')) {
+      logger.error('MisskeyStreaming: Unexpected EOF');
     }
   }
 
@@ -327,6 +479,11 @@ class MisskeyStreamingService extends _$MisskeyStreamingService
   }
 
   void _showReconnectToast() {
+    // 切换账户期间抑制 toast
+    if (_suppressToast) {
+      logger.info('MisskeyStreaming: Toast suppressed during account switch');
+      return;
+    }
     // 关闭旧的重连 toast，避免屏幕上堆积多个提示
     _dismissCurrentReconnectToast();
 
@@ -383,6 +540,22 @@ class MisskeyStreamingService extends _$MisskeyStreamingService
       _currentReconnectToast = null;
     }
   }
+
+  /// 切换账户期间抑制所有重连 toast，直到新连接建立
+  ///
+  /// 在调用 [setPrimaryAccount] 前设为 true，
+  /// 在检测到 [StreamingStatus.connected] 后自动清除。
+  void setSuppressToast(bool value) {
+    _suppressToast = value;
+    if (value) {
+      // 立即关闭当前 toast
+      _dismissCurrentReconnectToast();
+      _toastVisibilityController.add(false);
+    }
+    logger.info('MisskeyStreaming: Toast suppression set to $value');
+  }
+
+  bool get isSuppressingToast => _suppressToast;
 
   void _startHeartbeat() {
     _heartbeatTimer?.cancel();

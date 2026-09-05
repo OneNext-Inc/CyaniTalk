@@ -75,10 +75,6 @@ class AuthService extends _$AuthService {
         .length;
 
     logger.info('当前Misskey账户数量: $misskeyAccounts');
-    if (misskeyAccounts >= 10) {
-      logger.warning('Misskey账户数量达到上限 (10个)');
-      throw Exception('You have reached the limit of 10 Misskey accounts.');
-    }
 
     final session = const Uuid().v4();
     logger.debug('生成MiAuth会话ID: $session');
@@ -129,10 +125,6 @@ class AuthService extends _$AuthService {
         .length;
 
     logger.info('当前 Misskey 账户数量: $misskeyAccounts');
-    if (misskeyAccounts >= 10) {
-      logger.warning('Misskey 账户数量达到上限 (10个)');
-      throw Exception('You have reached the limit of 10 Misskey accounts.');
-    }
 
     // 启动本地 HTTP 服务器
     final server = MiAuthLocalServer();
@@ -259,22 +251,6 @@ class AuthService extends _$AuthService {
     logger.info('MiAuth认证成功，用户: ${user['username']}, 账户ID: $accountId');
 
     final repository = ref.read(authRepositoryProvider);
-    final accounts = await repository.getAccounts();
-
-    final existingAccount = accounts
-        .where((a) => a.id == accountId)
-        .firstOrNull;
-
-    if (existingAccount == null) {
-      final misskeyAccounts = accounts
-          .where((a) => a.platform == 'misskey')
-          .length;
-
-      if (misskeyAccounts >= 10) {
-        logger.warning('Misskey账户数量达到上限 (10个)');
-        throw Exception('You have reached the limit of 10 Misskey accounts.');
-      }
-    }
 
     final account = Account(
       id: accountId, // 复合ID
@@ -330,17 +306,6 @@ class AuthService extends _$AuthService {
   Future<bool> loginWithToken(String host, String token) async {
     final sanitizedHost = _sanitizeHost(host);
     logger.info('通过访问令牌登录 Misskey: $sanitizedHost');
-
-    // 检查账户数量限制
-    final accounts = await ref.read(authRepositoryProvider).getAccounts();
-    final misskeyAccounts = accounts
-        .where((a) => a.platform == 'misskey')
-        .length;
-
-    if (misskeyAccounts >= 10) {
-      logger.warning('Misskey账户数量达到上限 (10个)');
-      throw Exception('已达到 10 个 Misskey 账户上限');
-    }
 
     final networkSettings = ref.read(networkSettingsProvider).value;
     final dio = Dio(BaseOptions(
@@ -437,6 +402,40 @@ class AuthService extends _$AuthService {
     // Selected accounts will automatically re-evaluate since they watch authServiceProvider
     logger.debug('选中的账户将自动重新评估');
     logger.info('账户删除流程完成');
+  }
+
+  /// 重新排列账户顺序
+  ///
+  /// [orderedIds] - 按期望顺序排列的账户ID列表
+  Future<void> reorderAccounts(List<String> orderedIds) async {
+    logger.info('重新排列账户顺序 (${orderedIds.length} 个)');
+    await ref.read(authRepositoryProvider).reorderAccounts(orderedIds);
+    final updatedAccounts = await ref
+        .read(authRepositoryProvider)
+        .getAccounts();
+    state = AsyncData(updatedAccounts);
+    logger.info('账户顺序已更新');
+  }
+
+  /// 设置主用户（将指定账户移到首位，并设为选中状态）
+  ///
+  /// [account] 要设为主用户的账户
+  Future<void> setPrimaryAccount(Account account) async {
+    logger.info('设置主用户: ${account.id}');
+    final repository = ref.read(authRepositoryProvider);
+    final accounts = await repository.getAccounts();
+
+    // 将目标账户移到首位，其余保持原序
+    final others = accounts.where((a) => a.id != account.id).toList();
+    final reordered = [account, ...others];
+    await repository.reorderAccounts(reordered.map((a) => a.id).toList());
+
+    // 设为选中账户
+    await repository.saveSelectedMisskeyId(account.id);
+
+    final updatedAccounts = await repository.getAccounts();
+    state = AsyncData(updatedAccounts);
+    logger.info('主用户已设置: ${account.id}');
   }
 
   /// 清理主机地址，提取出域名部分

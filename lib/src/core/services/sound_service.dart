@@ -42,6 +42,13 @@ class SoundService {
     }
   }
 
+  Future<void> playAppUpdate() async {
+    final settings = await ref.read(soundSettingsProvider.future);
+    if (settings.appUpdateSound.isNotEmpty) {
+      await _play(settings.appUpdateSound);
+    }
+  }
+
     Future<void> _play(String assetPath) async {
       await ref.read(audioEngineProvider).playAsset(assetPath);
     }

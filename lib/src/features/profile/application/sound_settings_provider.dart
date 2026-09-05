@@ -14,7 +14,7 @@ class SoundDefaults {
   static const message = 'assets/sounds/Chat/waon.mp3';
 
   // App 内提示音
-  static const appUpdate = 'assets/sounds/App/update-available.ogg';
+  static const appUpdate = 'assets/sounds/App/Update/update-available.ogg';
   static const streamError = 'assets/sounds/App/RTStream/disconnect.ogg';
 }
 

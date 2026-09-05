@@ -25,7 +25,7 @@ import 'features/welcome/application/welcome_state.dart';
 import 'core/services/notification_manager.dart';
 import 'features/update/application/update_notifier.dart';
 import 'features/update/presentation/update_bottom_sheet.dart';
-import 'core/services/audio_engine.dart';
+import 'core/services/sound_service.dart';
 import 'core/services/timeline_cache_database.dart';
 import 'shared/widgets/custom_title_bar.dart';
 import 'features/profile/application/developer_settings_provider.dart';
@@ -618,8 +618,8 @@ class _UpdateHandlerState extends ConsumerState<_UpdateHandler> {
           if (mounted) {
             unawaited(
               ref
-                  .read(audioEngineProvider)
-                  .playAsset('sounds/App/update-available.ogg'),
+                  .read(soundServiceProvider)
+                  .playAppUpdate(),
             );
             showUpdateBottomSheet(context, next.update!);
           }

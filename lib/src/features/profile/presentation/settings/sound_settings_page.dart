@@ -76,7 +76,7 @@ const _messagePresets = [
 ];
 
 const _appUpdatePresets = [
-  'assets/sounds/App/update-available.ogg',
+  'assets/sounds/App/Update/update-available.ogg',
 ];
 
 const _streamErrorPresets = [

@@ -110,6 +110,37 @@ class AuthRepository {
       rethrow;
     }
   }
+
+  /// 按指定顺序重新排列账户
+  ///
+  /// [orderedIds] - 按期望顺序排列的账户ID列表
+  Future<void> reorderAccounts(List<String> orderedIds) async {
+    logger.info('AuthRepository: Reordering accounts (${orderedIds.length} items)');
+    final accounts = await getAccounts();
+    final accountMap = {for (final a in accounts) a.id: a};
+    final reordered = orderedIds
+        .where(accountMap.containsKey)
+        .map((id) => accountMap[id]!)
+        .toList();
+
+    // 追加不在 orderedIds 中的账户（防御性处理）
+    for (final a in accounts) {
+      if (!orderedIds.contains(a.id)) {
+        reordered.add(a);
+      }
+    }
+
+    try {
+      await _prefs.setString(
+        _kAccountsKey,
+        jsonEncode(reordered.map((e) => e.toJson()).toList()),
+      );
+      logger.info('AuthRepository: Successfully reordered accounts');
+    } catch (e) {
+      logger.error('AuthRepository: Error reordering accounts', e);
+      rethrow;
+    }
+  }
 }
 
 /// 提供FlutterSecureStorage实例的Riverpod提供者

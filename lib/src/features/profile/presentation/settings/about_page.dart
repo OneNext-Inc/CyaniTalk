@@ -11,7 +11,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '/src/core/core.dart';
 import '/src/core/api/network_client.dart';
-import '/src/core/services/audio_engine.dart';
 import '/src/core/widgets/settings_widgets.dart';
 import 'sponsor_page.dart';
 import '/src/shared/widgets/cyani_loading_indicator.dart';
@@ -57,13 +56,12 @@ class _AboutPageState extends ConsumerState<AboutPage> {
 
   /// 初始化页面状态
   ///
-  /// 加载应用程序信息、贡献者数据并播放页面打开音效。
+  /// 加载应用程序信息和贡献者数据。
   @override
   void initState() {
     super.initState();
     _initPackageInfo();
     _initSharedPreferences();
-    _playSound();
   }
 
   /// 初始化 SharedPreferences
@@ -83,19 +81,6 @@ class _AboutPageState extends ConsumerState<AboutPage> {
   @override
   void dispose() {
     super.dispose();
-  }
-
-  /// 播放页面打开音效
-  Future<void> _playSound() async {
-    try {
-      logger.info('AboutPage: Playing entrance sound');
-      await ref
-          .read(audioEngineProvider)
-          .playAsset('sounds/AboutPageEntrance.ogg');
-      logger.info('AboutPage: Entrance sound played successfully');
-    } catch (e) {
-      logger.error('AboutPage: Error playing sound: $e');
-    }
   }
 
   /// 初始化应用程序包信息

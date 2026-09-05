@@ -6,7 +6,6 @@ import '/src/shared/widgets/toast_helper.dart';
 import 'package:go_router/go_router.dart';
 import '/src/core/navigation/navigation.dart';
 import '/src/core/navigation/sub_navigation_notifier.dart';
-import '/src/core/services/audio_engine.dart';
 import '/src/core/theme/desktop_semantic_colors.dart';
 import '/src/core/utils/logger.dart';
 import '/src/features/auth/application/auth_service.dart';
@@ -257,13 +256,6 @@ class _MisskeyPageState extends ConsumerState<MisskeyPage>
         builder: (context) => const MisskeyPostPage(),
       );
     } else {
-      final String soundPath = switch (context.locale.languageCode) {
-        'zh' => 'sounds/SpeechNoti/PleaseLogin-zh.wav',
-        'en' => 'sounds/SpeechNoti/PleaseLogin-en.wav',
-        'ja' => 'sounds/SpeechNoti/PleaseLogin-ja.wav',
-        _ => 'sounds/SpeechNoti/PleaseLogin-default.wav',
-      };
-      await ref.read(audioEngineProvider).playAsset(soundPath);
       if (mounted) {
         if (!context.mounted) return;
         showToast(title: 'misskey_page_please_login'.tr(), type: ToastificationType.warning);

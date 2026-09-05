@@ -181,7 +181,7 @@ flutter:
     - assets/sounds/
     - assets/sounds/App/
     - assets/sounds/App/RTStream/
-    - assets/sounds/App/Expection/
+    - assets/sounds/App/Update/
     - assets/sounds/Chat/
     - assets/sounds/Emoji-Responses/
     - assets/sounds/Notifications/

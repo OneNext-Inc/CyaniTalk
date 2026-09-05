@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import '/src/shared/widgets/toast_helper.dart';
 import '/src/shared/widgets/error_state.dart';
 import 'package:Nyachi/src/core/utils/logger.dart';
-import 'package:Nyachi/src/core/services/audio_engine.dart';
 import 'package:Nyachi/src/features/auth/application/auth_service.dart';
 import 'package:Nyachi/src/routing/router.dart';
 import 'package:Nyachi/src/features/misskey/presentation/pages/misskey_post_page.dart';
@@ -98,31 +97,8 @@ class _MisskeyChannelDetailsPageState
                   MisskeyPostPage(channelId: widget.channel.id),
             );
           } else {
-            // 未登录，根据当前语言播放提示音
-            logger.info(
-              'MisskeyChannelDetailsPage: User not logged in, playing prompt sound',
-            );
-            final isMounted = mounted;
-            final currentContext = context;
-            try {
-              final String soundPath =
-                  switch (currentContext.locale.languageCode) {
-                    'zh' => 'sounds/SpeechNoti/PleaseLogin-zh.wav',
-                    'en' => 'sounds/SpeechNoti/PleaseLogin-en.wav',
-                    'ja' => 'sounds/SpeechNoti/PleaseLogin-ja.wav',
-                    _ => 'sounds/SpeechNoti/PleaseLogin-default.wav',
-                  };
-              await ref.read(audioEngineProvider).playAsset(soundPath);
-              logger.info(
-                'MisskeyChannelDetailsPage: Played login prompt sound: $soundPath',
-              );
-            } catch (e) {
-              logger.error(
-                'MisskeyChannelDetailsPage: Error playing sound: $e',
-              );
-            }
-
-            if (isMounted) {
+            // 未登录，提示用户
+            if (mounted) {
               showToast(title: 'misskey_page_please_login'.tr(), type: ToastificationType.info);
               // 跳转到 Profile 页面进行登录
               final router = ref.read(goRouterProvider);
